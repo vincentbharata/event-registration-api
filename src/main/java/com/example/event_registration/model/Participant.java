@@ -1,27 +1,30 @@
 package com.example.event_registration.model;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 
 @Entity
-public class Event {
+public class Participant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    private String title;
+    private String name;
 
-    @NotBlank
-    private String location;
+    @Email
+    private String email;
 
-    private LocalDate startDate;
-    private LocalDate endDate;
+    @Pattern(regexp = "^[0-9\\-+() ]{7,15}$")
+    private String phone;
 
+    @ManyToOne
+    private Event event;
 }
