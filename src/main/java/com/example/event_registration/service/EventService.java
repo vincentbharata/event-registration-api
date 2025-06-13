@@ -16,7 +16,7 @@ public class EventService {
     @Autowired
     private EventRepository eventRepo;
 
-    public ResponseEntity<?> create(Event event) {
+    public ResponseEntity<?> create(Event event) { //bisa diuat kelas masing2 untuik tiap respon
         if (event.getStartDate() != null && event.getEndDate() != null &&
                 !event.getStartDate().isBefore(event.getEndDate())) {
             return ResponseEntity.badRequest().body("Start date must be before end date");
